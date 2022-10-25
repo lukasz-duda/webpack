@@ -8,6 +8,9 @@ module.exports = {
         print: './src/print.js'
     },
     devtool: 'inline-source-map',
+    devServer: {
+        static: './dist'
+    },
     plugins: [
         new HtmlWebpackPlugin({
             title: 'Development'
@@ -29,5 +32,8 @@ module.exports = {
                 type: 'asset/resource'
             }
         ]
+    },
+    optimization: {
+        runtimeChunk: 'single'
     }
 };
