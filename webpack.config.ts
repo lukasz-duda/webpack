@@ -1,7 +1,10 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+import * as path from 'path';
+import * as webpack from 'webpack';
+import 'webpack-dev-middleware';
+import 'webpack-dev-server'
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
-module.exports = {
+const config: webpack.Configuration = {
     mode: 'development',
     entry: {
         index: './src/index.js',
@@ -38,3 +41,5 @@ module.exports = {
         runtimeChunk: 'single'
     }
 };
+
+export default config;
