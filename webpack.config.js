@@ -1,14 +1,13 @@
-import * as path from 'path';
-import * as webpack from 'webpack';
-import 'webpack-dev-middleware';
-import 'webpack-dev-server'
-import HtmlWebpackPlugin from 'html-webpack-plugin';
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+require('webpack-dev-middleware');
+require('webpack-dev-server');
 
-const config: webpack.Configuration = {
+module.exports = {
     mode: 'development',
     entry: {
         index: './src/index.js',
-        print: './src/print.js'
+        print: './src/print.ts'
     },
     devtool: 'inline-source-map',
     devServer: {
@@ -28,6 +27,10 @@ const config: webpack.Configuration = {
     module: {
         rules: [
             {
+                test: /\.ts$/i,
+                use: 'ts-loader'
+            },
+            {
                 test: /\.css$/i,
                 use: ['style-loader', 'css-loader']
             },
@@ -41,5 +44,3 @@ const config: webpack.Configuration = {
         runtimeChunk: 'single'
     }
 };
-
-export default config;
