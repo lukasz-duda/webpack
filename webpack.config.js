@@ -15,7 +15,9 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'Development'
+            title: 'Development',
+            template: 'index.html',
+            favicon: 'favicon.ico'
         })
     ],
     output: {
@@ -27,11 +29,21 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.ts$/i,
+                test: /\.ts$/,
                 use: 'ts-loader'
             },
             {
-                test: /\.css$/i,
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader",
+                    options: {
+                        presets: ['@babel/preset-react']
+                    }
+                }
+            },
+            {
+                test: /\.css$/,
                 use: ['style-loader', 'css-loader']
             },
             {
